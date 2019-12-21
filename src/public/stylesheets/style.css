@@ -1,0 +1,71 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    font: 14px Avenir, "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: aliceblue;
+    background-color: #212121;
+    margin: 0;
+    width: 100%;
+}
+
+a {
+    color: #00B7FF;
+}
+
+img {
+    width: 20%;
+}
+
+.page_title {
+    text-align: center;
+    justify-self: flex-start;
+    font-size: 40px;
+    color: #212121;
+    background-image: linear-gradient(to right top, #323232, #624E5F, #A46776, #DF8876, #FFBA6A, #F9F871);
+}
+
+.page_content {
+    margin-top: 2%;
+    display: flex;
+
+    border: 1px solid antiquewhite;
+    width: 60%;
+    align-self: center;
+}
+
+.page_footer {
+    justify-self: flex-end;
+}
+
+.second_grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: left;
+    width: 68%;
+}
+
+.third_grid {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: right;
+}
+
+.movie_title, .movie_description {
+    margin: 0;
+}
+
+.adult {
+    color: antiquewhite;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}

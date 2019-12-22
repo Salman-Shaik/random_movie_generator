@@ -78,9 +78,9 @@ label {
 
 .third_grid {
     display: flex;
-    justify-content: flex-start;
+    align-items: flex-end;
+    margin-left: auto;
     flex-direction: column;
-    align-content: center;
     text-align: right;
 }
 
@@ -101,11 +101,6 @@ label {
     border: none;
 }
 
-.movie_language {
-    background-color: black;
-    color: white;
-}
-
 .red {
     background-color: red;
 }
@@ -119,17 +114,35 @@ label {
     align-items: center;
 }
 
-.backgroundOne {
-    position: absolute;
-    background-size: contain;
-    z-index: -2;
+.adult, .movie_language {
+    border-radius: 6px;
+    padding: 2%;
+    background-color: black;
+    color: white;
 }
 
-.backgroundTwo {
-    position: absolute;
-    background-image: linear-gradient(to right top, #212121, #212121);
-    z-index: -1;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
+.hide {
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
+}
+
+.pop_line {
+    background: #D198C5FF;
+    border-radius: 3px;
+    width: 5px;
+    height: 20px;
+    float: left;
+    margin: 3px;
+}
+
+.pop_line.active {
+    background: #E0C568FF;
+}
+
+.popularity_modal {
+    display: flex;
+    align-items: center;
 }

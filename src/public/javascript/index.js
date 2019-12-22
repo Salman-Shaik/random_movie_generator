@@ -1,3 +1,4 @@
+let numberOfResults;
 const getApiUrl = pageNumber => {
     const API_KEY = "8f38dc176aea0ef9cbb167f50a8fc9b2";
     const API_HOST = "api.themoviedb.org";
@@ -8,7 +9,7 @@ const getTotalPageNumber = async () => {
     let initResPromise = fetch(getApiUrl());
     return await initResPromise.then(result => result.text())
         .then(data => JSON.parse(data))
-        .then(body => +body["total_pages"])
+        .then(body => [+body["total_pages"], body["total_results"]])
         .catch((e) => {
             console.error(e.message);
             Promise.reject(new TypeError(e.message));
@@ -21,7 +22,8 @@ const getRandomNumber = max => {
 };
 
 async function getRandomMovieSet() {
-    let totalNumberOfPages = await getTotalPageNumber();
+    let [totalNumberOfPages, totalNumberOfResults] = await getTotalPageNumber();
+    numberOfResults = totalNumberOfResults;
     let maxPageNumber = totalNumberOfPages / 2;
     let pageNumber = getRandomNumber(maxPageNumber);
     let responsePromise = fetch(getApiUrl(pageNumber));
@@ -63,39 +65,59 @@ const getRandomGradient = () => {
     return gradients[index];
 };
 
-const getValue = ratingPercent => {
-    const total = 250.2;
+const getValue = (ratingPercent, total) => {
     return (total / 100) * ratingPercent;
 };
 
-const assignValues = movieInfo => {
-    let movieTitle = document.querySelector(".movie_title");
-    let movieDesc = document.querySelector(".movie_description");
-    let movieReleaseDate = document.querySelector(".movie_release_date");
+const setInnerText = (selector, value) => {
+    let element = document.querySelector(selector);
+    element.innerText = value;
+};
+
+const setGradient = () => {
+    let mainModal = document.querySelector(".main_modal");
+    mainModal.className += getRandomGradient();
+};
+
+const setMovieTitle = title => setInnerText(".movie_title", title);
+const setMovieDescription = overview => setInnerText(".movie_description", overview);
+const setLanguage = language => setInnerText(".movie_language", language.toUpperCase());
+const setReleaseDate = releaseDate => setInnerText(".movie_release_date", releaseDate);
+
+const setRating = (average, votes) => {
     let movieRating = document.querySelector(".rating");
     let progress = document.querySelector(".progress");
-    let movieVotes = document.querySelector(".movie_votes");
-    let movieLanguage = document.querySelector(".movie_language");
-    let adult = document.querySelector(".adult");
-    let moviePopularity = document.querySelector(".movie_popularity");
-    let moviePoster = document.querySelector(".movie_poster");
-    let mainModal = document.querySelector(".main_modal");
-    let posterPath = `https://image.tmdb.org/t/p/original${movieInfo["poster_path"]}`;
-    let ratingPercent = +movieInfo["vote_average"] * 10;
+    let ratingPercent = +average * 10;
 
-    mainModal.className += getRandomGradient();
-    movieTitle.innerText = movieInfo.title;
-    movieDesc.innerText = movieInfo.overview;
-    movieReleaseDate.innerText = movieInfo["release_date"];
     movieRating.textContent = `${ratingPercent} %`;
-    progress.setAttribute('stroke-dasharray', `${getValue(ratingPercent)}, 250.2`);
-    movieVotes.innerText = `${movieInfo["vote_count"]} Votes`;
-    movieLanguage.innerText = movieInfo["original_language"];
-    moviePopularity.innerText = movieInfo.popularity;
-    moviePoster.src = posterPath;
-    if (!movieInfo.adult) {
-        adult.className = adult.className.replace("red", "green");
+    progress.setAttribute('stroke-dasharray', `${getValue(ratingPercent, 250.2)}, 250.2`);
+    setInnerText(".movie_votes", `${votes} Votes`)
+};
+
+const setPoster = posterPath => {
+    let moviePoster = document.querySelector(".movie_poster");
+    moviePoster.src = `https://image.tmdb.org/t/p/original${posterPath}`;
+};
+
+const setAdult = isAdult => {
+    let adult = document.querySelector(".adult");
+    if (isAdult) {
+        adult.className.replace("hide", "show");
+        return adult.innerText = "18+";
     }
+    adult.className.replace("show", "hide");
+    adult.innerText = "";
+};
+
+const assignValues = movieInfo => {
+    setGradient();
+    setMovieTitle(movieInfo.title);
+    setMovieDescription(movieInfo.overview);
+    setReleaseDate(movieInfo["release_date"]);
+    setRating(movieInfo["vote_average"], movieInfo["vote_count"]);
+    setLanguage(movieInfo["original_language"]);
+    setPoster(movieInfo["poster_path"]);
+    setAdult(movieInfo.adult);
 };
 
 const onload = async () => {

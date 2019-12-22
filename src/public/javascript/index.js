@@ -75,6 +75,7 @@ const assignValues = randomMovieInfo => {
     let moviePoster = document.querySelector(".movie_poster");
     let mainModal = document.querySelector(".main_modal");
     let posterPath = `https://image.tmdb.org/t/p/original${randomMovieInfo["poster_path"]}`;
+
     mainModal.className += getRandomGradient();
     movieTitle.innerText = randomMovieInfo.title;
     movieDesc.innerText = randomMovieInfo.overview;
@@ -84,7 +85,6 @@ const assignValues = randomMovieInfo => {
     movieLanguage.innerText = randomMovieInfo["original_language"];
     moviePopularity.innerText = randomMovieInfo.popularity;
     moviePoster.src = posterPath;
-
     if (!randomMovieInfo.adult) {
         adult.className = adult.className.replace("red", "green");
     }

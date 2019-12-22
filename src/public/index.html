@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="./stylesheets/circleProgress.css">
     <script src="javascript/index.js" rel="script"></script>
     <title>A.I.K.A.I</title>
 </head>
@@ -15,8 +16,18 @@
         <img src="" alt="poster" class="movie_poster"/>
         <div class="second_grid">
             <h2 class="movie_title">Title</h2>
-            <div class="movie_rating">rating</div>
-            <span class="movie_votes">0 Votes</span>
+            <div class="rating_box">
+                <div class="movie_rating">
+                    <svg id="svg" viewbox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="#212121"/>
+                        <path fill="none" stroke-linecap="round" stroke-width="5" stroke="#39ff14"
+                              stroke-dasharray="0,250.2"
+                              d="M50 10 a 40 40 0 0 1 0 80 a 40 40 0 0 1 0 -80"class="progress"/>
+                        <text x="50" y="50" text-anchor="middle" dy="7" font-size="20" class="rating" fill="antiqueWhite">1%</text>
+                    </svg>
+                </div>
+                <span class="movie_votes">0 Votes</span>
+            </div>
             <p class="movie_description">description</p>
             <div>
                 <label for="movie_release_date">Release Date:</label>

@@ -63,29 +63,37 @@ const getRandomGradient = () => {
     return gradients[index];
 };
 
-const assignValues = randomMovieInfo => {
+const getValue = ratingPercent => {
+    const total = 250.2;
+    return (total / 100) * ratingPercent;
+};
+
+const assignValues = movieInfo => {
     let movieTitle = document.querySelector(".movie_title");
     let movieDesc = document.querySelector(".movie_description");
     let movieReleaseDate = document.querySelector(".movie_release_date");
-    let movieRating = document.querySelector(".movie_rating");
+    let movieRating = document.querySelector(".rating");
+    let progress = document.querySelector(".progress");
     let movieVotes = document.querySelector(".movie_votes");
     let movieLanguage = document.querySelector(".movie_language");
     let adult = document.querySelector(".adult");
     let moviePopularity = document.querySelector(".movie_popularity");
     let moviePoster = document.querySelector(".movie_poster");
     let mainModal = document.querySelector(".main_modal");
-    let posterPath = `https://image.tmdb.org/t/p/original${randomMovieInfo["poster_path"]}`;
+    let posterPath = `https://image.tmdb.org/t/p/original${movieInfo["poster_path"]}`;
+    let ratingPercent = +movieInfo["vote_average"] * 10;
 
     mainModal.className += getRandomGradient();
-    movieTitle.innerText = randomMovieInfo.title;
-    movieDesc.innerText = randomMovieInfo.overview;
-    movieReleaseDate.innerText = randomMovieInfo["release_date"];
-    movieRating.innerText = +randomMovieInfo["vote_average"] * 10;
-    movieVotes.innerText = `${randomMovieInfo["vote_count"]} Votes`;
-    movieLanguage.innerText = randomMovieInfo["original_language"];
-    moviePopularity.innerText = randomMovieInfo.popularity;
+    movieTitle.innerText = movieInfo.title;
+    movieDesc.innerText = movieInfo.overview;
+    movieReleaseDate.innerText = movieInfo["release_date"];
+    movieRating.textContent = `${ratingPercent} %`;
+    progress.setAttribute('stroke-dasharray', `${getValue(ratingPercent)}, 250.2`);
+    movieVotes.innerText = `${movieInfo["vote_count"]} Votes`;
+    movieLanguage.innerText = movieInfo["original_language"];
+    moviePopularity.innerText = movieInfo.popularity;
     moviePoster.src = posterPath;
-    if (!randomMovieInfo.adult) {
+    if (!movieInfo.adult) {
         adult.className = adult.className.replace("red", "green");
     }
 };

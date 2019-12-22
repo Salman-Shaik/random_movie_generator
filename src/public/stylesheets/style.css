@@ -5,6 +5,7 @@ html, body {
 
 body {
     display: flex;
+    text-align: center;
     flex-direction: column;
     font: 14px Avenir, "Lucida Grande", Helvetica, Arial, sans-serif;
     color: aliceblue;
@@ -37,7 +38,7 @@ label {
 .page_content {
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(to right top, #212121,#212121);
+    background-image: linear-gradient(to right top, #212121, #212121);
     height: 80%;
     width: 100%;
 }
@@ -118,15 +119,15 @@ label {
     align-items: center;
 }
 
-.backgroundOne{
+.backgroundOne {
     position: absolute;
     background-size: contain;
     z-index: -2;
 }
 
-.backgroundTwo{
+.backgroundTwo {
     position: absolute;
-    background-image: linear-gradient(to right top, #212121,#212121);
+    background-image: linear-gradient(to right top, #212121, #212121);
     z-index: -1;
     width: 100%;
     height: auto;

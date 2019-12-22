@@ -1,12 +1,14 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
 body {
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
     font: 14px Avenir, "Lucida Grande", Helvetica, Arial, sans-serif;
     color: aliceblue;
-    background-color: #212121;
     margin: 0;
-    width: 100%;
 }
 
 a {
@@ -17,41 +19,76 @@ img {
     width: 20%;
 }
 
+label {
+    font-weight: bold;
+}
+
 .page_title {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     justify-self: flex-start;
-    font-size: 40px;
+    font-size: 30px;
     color: #212121;
+    height: 20%;
     background-image: linear-gradient(to right top, #323232, #624E5F, #A46776, #DF8876, #FFBA6A, #F9F871);
 }
 
 .page_content {
-    margin-top: 2%;
     display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to right top, #212121,#212121);
+    height: 80%;
+    width: 100%;
+}
 
-    border: 1px solid antiquewhite;
-    width: 60%;
+.main_modal {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    width: 70%;
+    padding: 0.5%;
     align-self: center;
+    border-radius: 6px;
 }
 
 .page_footer {
     justify-self: flex-end;
 }
 
+.pearl {
+    color: #212121;
+    background-image: linear-gradient(to right top, #212121, #C1C1C1, #00A97F, #373544);
+}
+
+.squash {
+    background-image: linear-gradient(to right top, #212121, #413425, #413425, #023D43, #023D43);
+}
+
 .second_grid {
+    margin-left: 2%;
+    margin-right: 2%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-
+    justify-content: space-between;
     text-align: left;
-    width: 68%;
+    width: 50%;
 }
 
 .third_grid {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    align-content: center;
     text-align: right;
+}
+
+.movie_title {
+    font-size: 30px;
+}
+
+.movie_description, .movie_release_date, .adult {
+    font-size: 16px;
 }
 
 .movie_title, .movie_description {
@@ -60,6 +97,12 @@ img {
 
 .adult {
     color: antiquewhite;
+    border: none;
+}
+
+.movie_language {
+    background-color: black;
+    color: white;
 }
 
 .red {
@@ -68,4 +111,24 @@ img {
 
 .green {
     background-color: green;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+}
+
+.backgroundOne{
+    position: absolute;
+    background-size: contain;
+    z-index: -2;
+}
+
+.backgroundTwo{
+    position: absolute;
+    background-image: linear-gradient(to right top, #212121,#212121);
+    z-index: -1;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
 }

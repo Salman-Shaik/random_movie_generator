@@ -18,7 +18,7 @@ const getTotalPageNumber = async () => {
 const getRandomNumber = max => {
     const randomNumber = Math.floor(Math.random() * max);
     return randomNumber !== 0 ? randomNumber : 1;
-}
+};
 
 async function getRandomMovieSet() {
     let totalNumberOfPages = await getTotalPageNumber();
@@ -57,6 +57,12 @@ const getRandomMovieInfo = async () => {
     return randomMovieIndex < movieSetLength ? movieSet[randomMovieIndex] : getDefaultMovieInfo();
 };
 
+const getRandomGradient = () => {
+    const gradients = [" pearl", " squash", " pearl", " squash", " squash", " pearl"];
+    let index = getRandomNumber(gradients.length + 1) - 1;
+    return gradients[index];
+};
+
 const assignValues = randomMovieInfo => {
     let movieTitle = document.querySelector(".movie_title");
     let movieDesc = document.querySelector(".movie_description");
@@ -67,16 +73,19 @@ const assignValues = randomMovieInfo => {
     let adult = document.querySelector(".adult");
     let moviePopularity = document.querySelector(".movie_popularity");
     let moviePoster = document.querySelector(".movie_poster");
+    let mainModal = document.querySelector(".main_modal");
+    let posterPath = `https://image.tmdb.org/t/p/original${randomMovieInfo["poster_path"]}`;
+    mainModal.className += getRandomGradient();
     movieTitle.innerText = randomMovieInfo.title;
     movieDesc.innerText = randomMovieInfo.overview;
     movieReleaseDate.innerText = randomMovieInfo["release_date"];
-    movieRating.innerText = randomMovieInfo["vote_average"];
-    movieVotes.innerText = randomMovieInfo["vote_count"];
+    movieRating.innerText = +randomMovieInfo["vote_average"] * 10;
+    movieVotes.innerText = `${randomMovieInfo["vote_count"]} Votes`;
     movieLanguage.innerText = randomMovieInfo["original_language"];
     moviePopularity.innerText = randomMovieInfo.popularity;
-    moviePoster.src = `https://image.tmdb.org/t/p/w500${randomMovieInfo["poster_path"]}`;
-    console.log(randomMovieInfo['id'])
-    if (randomMovieInfo.adult) {
+    moviePoster.src = posterPath;
+
+    if (!randomMovieInfo.adult) {
         adult.className = adult.className.replace("red", "green");
     }
 };
@@ -84,5 +93,5 @@ const assignValues = randomMovieInfo => {
 const onload = async () => {
     let randomMovieInfo = await getRandomMovieInfo();
     assignValues(randomMovieInfo)
-}
+};
 window.onload = onload;

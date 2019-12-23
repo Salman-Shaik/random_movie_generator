@@ -119,13 +119,29 @@ const assignValues = movieInfo => {
     setAdult(movieInfo.adult);
 };
 
-const onload = async () => {
+const getActualModal = () => {
     let main = document.querySelector(".page_content");
     let actualModal = main.innerHTML;
     delete main.innerHTML;
+    return {main, actualModal};
+};
+
+const showRandomFilm = async (e) => {
+    let {main, actualModal} = getActualModal();
     main.innerHTML = "<div class=\"lds-circle\"><div></div></div>";
     let randomMovieInfo = await getRandomMovieInfo();
     main.innerHTML = actualModal;
     assignValues(randomMovieInfo);
+    addListenerToRefreshButton();
+};
+
+const addListenerToRefreshButton = () => {
+    let refreshButton = document.querySelector(".refresh");
+    refreshButton.addEventListener("click",showRandomFilm);
+};
+
+const onload = async () => {
+    await showRandomFilm();
+    addListenerToRefreshButton();
 };
 window.onload = onload;

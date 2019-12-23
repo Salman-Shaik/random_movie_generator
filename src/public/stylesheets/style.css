@@ -63,6 +63,7 @@ label {
 }
 
 .squash {
+    color: white;
     background-image: linear-gradient(to right top, #212121, #413425, #413425, #023D43, #023D43);
 }
 
@@ -116,7 +117,7 @@ label {
 
 .adult, .movie_language {
     border-radius: 6px;
-    padding: 2%;
+    padding: 6px;
     background-color: black;
     color: white;
 }
@@ -145,4 +146,25 @@ label {
 .popularity_modal {
     display: flex;
     align-items: center;
+}
+
+.refresh {
+    background-color: transparent;
+    border: none;
+}
+
+.fa-refresh {
+    font-size: 20px;
+    color: #fbd1c3;
+}
+.fa-refresh:hover{
+    color:darkorange;
+}
+
+.refresh:focus {
+    outline: none;
+}
+
+.refresh:hover {
+    cursor: pointer;
 }

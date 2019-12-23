@@ -37,7 +37,6 @@ async function getRandomMovieSet() {
 }
 
 const getDefaultMovieInfo = () => ({
-    popularity: 28.09,
     vote_average: 8.7,
     vote_count: 14465,
     adult: false,
@@ -121,7 +120,12 @@ const assignValues = movieInfo => {
 };
 
 const onload = async () => {
+    let main = document.querySelector(".page_content");
+    let actualModal = main.innerHTML;
+    delete main.innerHTML;
+    main.innerHTML = "<div class=\"lds-circle\"><div></div></div>";
     let randomMovieInfo = await getRandomMovieInfo();
-    assignValues(randomMovieInfo)
+    main.innerHTML = actualModal;
+    assignValues(randomMovieInfo);
 };
 window.onload = onload;

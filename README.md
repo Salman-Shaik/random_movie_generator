@@ -1,4 +1,5 @@
-# random_movie_generator
+# Random Movie Generator
+
   ###### Recommends a Random Movie or Random Tv Show.
 
 - To get a random Movie: Visit [Random Movie](https://lightmasters-salman.herokuapp.com/)

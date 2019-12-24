@@ -29,16 +29,17 @@ label {
     justify-content: center;
     align-items: center;
     justify-self: flex-start;
-    font-size: 30px;
+    font-size: 35px;
     color: #212121;
-    height: 20%;
+    height: 22%;
     background-image: linear-gradient(to right top, #323232, #624E5F, #A46776, #DF8876, #FFBA6A, #F9F871);
+    border-bottom: #5E4B5B 1px solid;
+    border-radius: 2px;
 }
 
 .page_content {
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(to right top, #212121, #212121);
     height: 80%;
     width: 100%;
 }
@@ -68,13 +69,13 @@ label {
 }
 
 .second_grid {
-    margin-left: 2%;
-    margin-right: 2%;
+    width: 50%;
+    margin: 0.3% 2% 1%;
+    text-align: left;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    text-align: left;
-    width: 50%;
 }
 
 .third_grid {
@@ -157,8 +158,9 @@ label {
     font-size: 20px;
     color: #fbd1c3;
 }
-.fa-refresh:hover{
-    color:darkorange;
+
+.fa-refresh:hover {
+    color: darkorange;
 }
 
 .refresh:focus {
@@ -167,4 +169,23 @@ label {
 
 .refresh:hover {
     cursor: pointer;
+}
+
+.first_background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -2;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+
+.second_background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #212121;
+    z-index: -1;
+    opacity: 0.5;
 }

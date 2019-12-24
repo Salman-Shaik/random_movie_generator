@@ -71,6 +71,7 @@ const getValue = (ratingPercent, total) => {
 const setInnerText = (selector, value) => {
     let element = document.querySelector(selector);
     element.innerText = value;
+    return element;
 };
 
 const setGradient = () => {
@@ -80,7 +81,22 @@ const setGradient = () => {
 
 const setMovieTitle = title => setInnerText(".movie_title", title);
 const setMovieDescription = overview => setInnerText(".movie_description", overview);
-const setLanguage = language => setInnerText(".movie_language", language.toUpperCase());
+
+let languages = {
+    en: "English",
+    it: "Italian",
+    es: "Spanish",
+    ja: "Japanese",
+    fr: "French",
+    pt: "Portuguese",
+};
+
+const getAbbreviation = shortHand => languages[shortHand];
+
+const setLanguage = shortHand => {
+    let language = setInnerText(".movie_language", shortHand.toUpperCase());
+    language.title = getAbbreviation(shortHand);
+}
 const setReleaseDate = releaseDate => setInnerText(".movie_release_date", releaseDate);
 
 const setRating = (average, votes) => {
@@ -93,9 +109,9 @@ const setRating = (average, votes) => {
     setInnerText(".movie_votes", `${votes} Votes`)
 };
 
-const setPoster = posterPath => {
+const setPoster = posterUrl => {
     let moviePoster = document.querySelector(".movie_poster");
-    moviePoster.src = `https://image.tmdb.org/t/p/original${posterPath}`;
+    moviePoster.src = posterUrl;
 };
 
 const setAdult = isAdult => {
@@ -108,14 +124,21 @@ const setAdult = isAdult => {
     adult.innerText = "";
 };
 
+const setBackGroundImage = (posterUrl) => {
+    let elem = document.querySelector(".first_background");
+    elem.style.backgroundImage = `url(${posterUrl})`
+};
+
 const assignValues = movieInfo => {
+    let posterUrl = `https://image.tmdb.org/t/p/original${movieInfo["poster_path"]}`;
     setGradient();
+    setBackGroundImage(posterUrl);
     setMovieTitle(movieInfo.title);
     setMovieDescription(movieInfo.overview);
     setReleaseDate(movieInfo["release_date"]);
     setRating(movieInfo["vote_average"], movieInfo["vote_count"]);
     setLanguage(movieInfo["original_language"]);
-    setPoster(movieInfo["poster_path"]);
+    setPoster(posterUrl);
     setAdult(movieInfo.adult);
 };
 
@@ -137,11 +160,10 @@ const showRandomFilm = async (e) => {
 
 const addListenerToRefreshButton = () => {
     let refreshButton = document.querySelector(".refresh");
-    refreshButton.addEventListener("click",showRandomFilm);
+    refreshButton.addEventListener("click", showRandomFilm);
 };
 
 const onload = async () => {
     await showRandomFilm();
-    addListenerToRefreshButton();
 };
 window.onload = onload;

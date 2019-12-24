@@ -31,3 +31,8 @@ svg {
         transform: rotateY(3600deg);
     }
 }
+
+
+.force_bottom{
+    margin-top: auto;
+}

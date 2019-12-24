@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="stylesheets/index.css">
+    <link rel="stylesheet" href="stylesheets/tvSeries.css">
     <link rel="stylesheet" href="stylesheets/prop.css">
-    <script src="javascript/index.js" rel="script"></script>
+    <script src="javascript/tvSeries.js" rel="script"></script>
     <title>A.I.K.A.I</title>
 </head>
 <body>
@@ -16,14 +16,14 @@
 <div class="second_background"></div>
 <main class="page_content">
     <div class="main_modal">
-        <img src="" alt="poster" class="movie_poster"/>
+        <img src="" alt="poster" class="show_poster"/>
         <div class="second_grid">
             <div>
-                <h2 class="movie_title">Title</h2>
-                <span class="movie_genres" id="movie_genres">genre</span>
-                <br/><br/>
+                <h2 class="show_title">Title</h2>
+                <span class="show_genres" id="show_genres">genre</span>
+                <br><br>
                 <div class="rating_box">
-                    <div class="movie_rating">
+                    <div class="show_rating">
                         <svg id="svg" viewbox="0 0 100 100">
                             <circle cx="50" cy="50" r="45" fill="#212121"/>
                             <path fill="none" stroke-linecap="round" stroke-width="5" stroke="#39ff14"
@@ -34,24 +34,24 @@
                             </text>
                         </svg>
                     </div>
-                    <span class="movie_votes">0 Votes</span>
+                    <span class="show_votes">0 Votes</span>
                 </div>
             </div>
             <br>
-            <p class="movie_description">description</p>
+            <p class="show_description">description</p>
             <br>
             <div class="force_bottom">
-                <label for="movie_release_date">Release Date:</label>
-                <span class="movie_release_date" id="movie_release_date">YYYY-MM-DD</span>
+                <label for="show_release_date">First Air Date:</label>
+                <span class="show_release_date" id="show_release_date">YYYY-MM-DD</span>
             </div>
         </div>
         <div class="third_grid">
             <button class="refresh"><i class="fa fa-refresh"></i></button>
-            <span class="movie_language" title="language">Language</span>
+            <span class="show_language" title="language">Language</span>
             <div class="adult hide"></div>
         </div>
     </div>
-    <button type="button" class="tv_shows">T.V <i class="fa fa-tv"></i></button>
+    <button type="button" class="movies">Movie <i class="fa fa-film"></i></button>
 </main>
 </body>
 </html>

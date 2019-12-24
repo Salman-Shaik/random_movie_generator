@@ -6,33 +6,29 @@ const languages = {
     fr: "French",
     pt: "Portuguese",
 };
-
-const movieGenres = {
-    12: "Adventure",
-    14: "Fantasy",
+const showGenres = {
     16: "Animation",
     18: "Drama",
-    27: "Horror",
-    28: "Action",
     35: "Comedy",
-    36: "History",
     37: "Western",
-    53: "Thriller",
     80: "Crime",
     99: "Documentary",
-    878: "Science Fiction",
     9648: "Mystery",
-    10402: "Music",
-    10749: "Romance",
     10751: "Family",
-    10752: "War",
-    10770: "TV Movie"
-}
+    10759: "Action & Adventure",
+    10762: "Kids",
+    10763: "News",
+    10764: "Reality",
+    10765: "Sci-Fi & Fantasy",
+    10766: "Soap",
+    10767: "Talk",
+    10768: "War & Politics"
+};
 
 const getApiUrl = pageNumber => {
     const API_KEY = "8f38dc176aea0ef9cbb167f50a8fc9b2";
     const API_HOST = "api.themoviedb.org";
-    return `https://${API_HOST}/3/movie/top_rated?api_key=${API_KEY}&page=${pageNumber}`;
+    return `https://${API_HOST}/3/tv/top_rated?api_key=${API_KEY}&page=${pageNumber}`;
 };
 
 const getTotalPageNumber = async () => {
@@ -53,7 +49,8 @@ const getRandomNumber = max => {
 
 async function getRandomMovieSet() {
     let totalNumberOfPages = await getTotalPageNumber();
-    let pageNumber = getRandomNumber(totalNumberOfPages / 2);
+    let maxPageNumber = totalNumberOfPages / 2;
+    let pageNumber = getRandomNumber(maxPageNumber);
     let responsePromise = fetch(getApiUrl(pageNumber));
     return await responsePromise.then(result => result.text())
         .then(data => JSON.parse(data))
@@ -80,10 +77,10 @@ const getDefaultMovieInfo = () => ({
 });
 
 const getRandomMovieInfo = async () => {
-    let movieSet = await getRandomMovieSet();
-    let movieSetLength = movieSet.length;
-    let randomMovieIndex = getRandomNumber(movieSetLength) - 1;
-    return randomMovieIndex < movieSetLength ? movieSet[randomMovieIndex] : getDefaultMovieInfo();
+    let showSet = await getRandomMovieSet();
+    let showSetLength = showSet.length;
+    let randomMovieIndex = getRandomNumber(showSetLength) - 1;
+    return randomMovieIndex < showSetLength ? showSet[randomMovieIndex] : getDefaultMovieInfo();
 };
 
 const getRandomGradient = () => {
@@ -92,9 +89,7 @@ const getRandomGradient = () => {
     return gradients[index];
 };
 
-const getValue = (ratingPercent, total) => {
-    return (total / 100) * ratingPercent;
-};
+const getValue = (ratingPercent, total) => (total / 100) * ratingPercent;
 
 const setInnerText = (selector, value) => {
     let element = document.querySelector(selector);
@@ -107,28 +102,28 @@ const setGradient = () => {
     mainModal.className += getRandomGradient();
 };
 
-const setMovieTitle = title => setInnerText(".movie_title", title);
-const setMovieDescription = overview => setInnerText(".movie_description", overview);
-const setReleaseDate = releaseDate => setInnerText(".movie_release_date", releaseDate);
+const setMovieTitle = title => setInnerText(".show_title", title);
+const setMovieDescription = overview => setInnerText(".show_description", overview);
+const setReleaseDate = releaseDate => setInnerText(".show_release_date", releaseDate);
 
 const setLanguage = shortHand => {
-    let language = setInnerText(".movie_language", shortHand.toUpperCase());
+    let language = setInnerText(".show_language", shortHand.toUpperCase());
     language.title = languages[shortHand];
 };
 
 const setRating = (average, votes) => {
-    let movieRating = document.querySelector(".rating");
+    let showRating = document.querySelector(".rating");
     let progress = document.querySelector(".progress");
     let ratingPercent = +average * 10;
 
-    movieRating.textContent = `${ratingPercent} %`;
+    showRating.textContent = `${ratingPercent} %`;
     progress.setAttribute('stroke-dasharray', `${getValue(ratingPercent, 250.2)}, 250.2`);
-    setInnerText(".movie_votes", `${votes} Votes`)
+    setInnerText(".show_votes", `${votes} Votes`)
 };
 
 const setPoster = posterUrl => {
-    let moviePoster = document.querySelector(".movie_poster");
-    moviePoster.src = posterUrl;
+    let showPoster = document.querySelector(".show_poster");
+    showPoster.src = posterUrl;
 };
 
 const setAdult = isAdult => {
@@ -146,24 +141,24 @@ const setBackGroundImage = (posterUrl) => {
     elem.style.backgroundImage = `url(${posterUrl})`
 };
 
-const setGenres = genreIds => {
-    let genres = [];
-    genreIds.forEach(id => genres.push(movieGenres[id]));
-    setInnerText(".movie_genres", genres.join(" , "));
+const setGenres = (genreIds) => {
+    let genre = [];
+    genreIds.forEach(id => genre.push(showGenres[id]));
+    setInnerText(".show_genres", genre.join(" , "));
 };
 
-const assignValues = movieInfo => {
-    let posterUrl = `https://image.tmdb.org/t/p/original${movieInfo["poster_path"]}`;
+const assignValues = showInfo => {
+    let posterUrl = `https://image.tmdb.org/t/p/original${showInfo["poster_path"]}`;
     setGradient();
+    setGenres(showInfo["genre_ids"]);
     setBackGroundImage(posterUrl);
-    setMovieTitle(movieInfo.title);
-    setMovieDescription(movieInfo.overview);
-    setReleaseDate(movieInfo["release_date"]);
-    setRating(movieInfo["vote_average"], movieInfo["vote_count"]);
-    setLanguage(movieInfo["original_language"]);
+    setMovieTitle(showInfo.name);
+    setMovieDescription(showInfo.overview);
+    setReleaseDate(showInfo["first_air_date"]);
+    setRating(showInfo["vote_average"], showInfo["vote_count"]);
+    setLanguage(showInfo["original_language"]);
     setPoster(posterUrl);
-    setGenres(movieInfo["genre_ids"]);
-    setAdult(movieInfo.adult);
+    setAdult(showInfo.adult);
 };
 
 const getActualModal = () => {
@@ -184,8 +179,8 @@ const showRandomFilm = async (e) => {
 
 const addListenerToButtons = () => {
     let refreshButton = document.querySelector(".refresh");
-    let gotoTvShow = document.querySelector(".tv_shows");
-    gotoTvShow.addEventListener("click",()=>window.location.href="/tvSeries.html")
+    let gotoMovies = document.querySelector(".movies");
+    gotoMovies.addEventListener("click",()=>window.location.href="/")
     refreshButton.addEventListener("click", showRandomFilm);
 };
 

@@ -5,6 +5,7 @@ const languages = {
     ja: "Japanese",
     fr: "French",
     pt: "Portuguese",
+    ko: "Korean"
 };
 
 const movieGenres = {

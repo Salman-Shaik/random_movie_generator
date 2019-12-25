@@ -1,7 +1,8 @@
 const {setGenres, setLanguage, setMovieDescription, setMovieTitle, setPoster, setRating, setReleaseDate} = movieSetters;
 
 const getApiUrl = pageNumber => {
-    const API_KEY = "8f38dc176aea0ef9cbb167f50a8fc9b2";
+    const API_KEY = getCookieValue(document.cookie);
+    console.log(API_KEY);
     const API_HOST = "api.themoviedb.org";
     return `https://${API_HOST}/3/movie/top_rated?api_key=${API_KEY}&page=${pageNumber}`;
 };

@@ -15,6 +15,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use((req, res, next) => {
+    let cookie = req.cookies.apiKey;
+    if (!cookie) {
+        res.cookie('apiKey', '8f38dc176aea0ef9cbb167f50a8fc9b2');
+    } else {
+        console.info("Api Key cookie already exists");
+    }
+    next();
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

@@ -78,4 +78,6 @@ const setGradient = () => {
     mainModal.className += getRandomGradient();
 };
 
+const getCookieValue = cookieString => cookieString.split("=")[1];
+
 const loader = "<div class=\"lds-circle\"><div></div></div>";

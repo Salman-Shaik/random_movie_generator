@@ -1,10 +1,8 @@
 const {setGenres, setLanguage, setShowDescription, setShowTitle, setPoster, setRating, setReleaseDate} = ShowSetters;
 
-const getApiUrl = pageNumber => {
-    const API_KEY = getCookieValue(document.cookie);
-    const API_HOST = "api.themoviedb.org";
-    return `https://${API_HOST}/3/tv/top_rated?api_key=${API_KEY}&page=${pageNumber}`;
-};
+const getApiForPopularTv = pageNumber => getApiForPopular("tv", pageNumber);
+
+const getApiForShow = (movieName) => getAPiFor("tv", movieName);
 
 const assignValues = showInfo => {
     const posterUrl = getPosterUrl(showInfo["poster_path"]);
@@ -20,17 +18,31 @@ const assignValues = showInfo => {
     setAdult(showInfo.adult);
 };
 
+const getShow = async () => {
+    let searchQuery = document.querySelector(".search_query");
+    let showName = searchQuery.value;
+    let apiHostForShow = getApiForShow(showName);
+    let response = await fetchResource(apiHostForShow);
+    let movieInfo = refineShowResults(response, showName);
+    addListenerToSearch();
+    if (!movieInfo) return highlightSearchBar(searchQuery);
+    clearElementValue(searchQuery);
+    assignValues(movieInfo);
+};
+
 const addListenerToButtons = () => {
     let refreshButton = document.querySelector(".refresh");
     let gotoMovies = document.querySelector(".movies");
+    let search = document.querySelector(".search_button");
     gotoMovies.addEventListener("click", () => window.location.href = "/")
     refreshButton.addEventListener("click", showRandomShow);
+    search.addEventListener("click", getShow);
 };
 
 const showRandomShow = async (e) => {
     let {main, actualModal} = getActualModal();
     main.innerHTML = loader;
-    let randomMovieInfo = await getRandomVideoInfo(getApiUrl(), defaultShowInfo);
+    let randomMovieInfo = await getRandomVideoInfo(getApiForPopularTv(), defaultShowInfo);
     main.innerHTML = actualModal;
     assignValues(randomMovieInfo);
     addListenerToButtons();

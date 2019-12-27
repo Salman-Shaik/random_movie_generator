@@ -5,7 +5,11 @@ const languages = {
     ja: "Japanese",
     fr: "French",
     pt: "Portuguese",
-    ko: "Korean"
+    ko: "Korean",
+    te: "Telugu",
+    hi: "Hindi",
+    ml: "Malayalam",
+    ta: "Tamil",
 };
 
 const movieGenres = {

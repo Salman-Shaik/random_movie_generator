@@ -1,29 +1,3 @@
-html, body {
-    height: 100%;
-    width: 100%;
-}
-
-body {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    font: 14px Avenir, "Lucida Grande", Helvetica, Arial, sans-serif;
-    color: aliceblue;
-    margin: 0;
-}
-
-a {
-    color: #00B7FF;
-}
-
-img {
-    width: 20.3%;
-}
-
-label {
-    font-weight: bold;
-}
-
 .page_title {
     display: flex;
     justify-content: center;
@@ -35,28 +9,6 @@ label {
     background-image: linear-gradient(to right, #e1f191, #e1f191, #c5f5a1, #a9f7b5, #90f8ca, #7cf7df);
     border-bottom: #95F6CF 1px solid;
     border-radius: 2px;
-}
-
-.page_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 80%;
-    width: 100%;
-}
-
-.main_modal {
-    margin-top: 2%;
-    margin-bottom: 2%;
-    display: flex;
-    width: 75%;
-    padding: 0.5%;
-    align-self: center;
-    border-radius: 6px;
-}
-
-.page_footer {
-    justify-self: flex-end;
 }
 
 .pearl {
@@ -78,112 +30,12 @@ label {
     flex-direction: column;
 }
 
-.third_grid {
-    display: flex;
-    align-items: flex-end;
-    margin-left: auto;
-    flex-direction: column;
-    text-align: right;
-}
-
 .show_title {
     font-size: 30px;
 }
 
-.show_description, .show_release_date, .adult {
-    font-size: 16px;
-}
-
 .show_release_date {
     align-self: flex-end;
-}
-
-.show_title, .show_description {
-    margin: 0;
-}
-
-.adult {
-    color: antiquewhite;
-    border: none;
-}
-
-.red {
-    background-color: red;
-}
-
-.green {
-    background-color: green;
-}
-
-.contact {
-    display: flex;
-    align-items: center;
-}
-
-.adult, .show_language {
-    border-radius: 6px;
-    padding: 6px;
-    background-color: black;
-    color: white;
-}
-
-.hide {
-    opacity: 0;
-}
-
-.show {
-    opacity: 1;
-}
-
-.pop_line {
-    background: #D198C5FF;
-    border-radius: 3px;
-    width: 5px;
-    height: 20px;
-    float: left;
-    margin: 3px;
-}
-
-.pop_line.active {
-    background: #E0C568FF;
-}
-
-.popularity_modal {
-    display: flex;
-    align-items: center;
-}
-
-.refresh {
-    background-color: transparent;
-    border: none;
-}
-
-.fa-refresh {
-    font-size: 20px;
-    color: gray;
-}
-
-.fa-refresh:hover {
-    color: black
-}
-
-.refresh:focus {
-    outline: none;
-}
-
-.refresh:hover {
-    cursor: pointer;
-}
-
-.first_background {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -2;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-    filter: blur(10px);
 }
 
 .second_background {
@@ -206,12 +58,6 @@ label {
     font-weight: bolder;
 }
 
-.fa-film{
-    align-self: center;
-    font-size: 26px;
-    color: #212121;
-}
-
 .movies {
     text-align: center;
     align-self: center;
@@ -228,13 +74,4 @@ label {
     background-image: linear-gradient(to right top, #624E5F, #A46776, #DF8876, #FFBA6A, #F9F871);
     color: #212121;
     box-shadow: 2px 2px 8px 2px gray;
-}
-
-.movies:hover {
-    box-shadow: 1px 1px 5px 1px #212121;
-    cursor: pointer;
-}
-
-.movies:focus {
-    outline: none;
 }

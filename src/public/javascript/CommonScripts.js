@@ -40,11 +40,7 @@ const getTotalPageNumber = async (apiURL) => {
         });
 };
 
-const getRandomSet = async (apiUrl) => {
-    let totalNumberOfPages = await getTotalPageNumber(apiUrl);
-    let maxPageNumber = totalNumberOfPages / 2;
-    let pageNumber = getRandomNumber(maxPageNumber);
-    let url = apiUrl.replace(undefined, pageNumber);
+async function fetchResource(url) {
     let responsePromise = fetch(url);
     return await responsePromise.then(result => result.text())
         .then(data => JSON.parse(data))
@@ -53,6 +49,14 @@ const getRandomSet = async (apiUrl) => {
             console.error(e.message);
             Promise.reject(new TypeError(e.message));
         });
+}
+
+const getRandomSet = async (apiUrl) => {
+    let totalNumberOfPages = await getTotalPageNumber(apiUrl);
+    let maxPageNumber = totalNumberOfPages / 2;
+    let pageNumber = getRandomNumber(maxPageNumber);
+    let url = apiUrl.replace(undefined, pageNumber);
+    return await fetchResource(url);
 };
 
 const getRandomVideoInfo = async (apiUrl, defaultValue) => {
@@ -78,6 +82,48 @@ const setGradient = () => {
     mainModal.className += getRandomGradient();
 };
 
+const refineMovieResults = (results, title) => {
+    let movieInfo = results.find(result => result.title.includes(title));
+    return !movieInfo ? results[0] : movieInfo;
+};
+
+const refineShowResults = (results, name) => {
+    let movieInfo = results.find(result => result.name.includes(name));
+    return !movieInfo ? results[0] : movieInfo;
+};
+
 const getCookieValue = cookieString => cookieString.split("=")[1];
+
+const getAPiFor = (type, title) => {
+    const API_HOST = "api.themoviedb.org";
+    const API_KEY = getCookieValue(document.cookie);
+    return `https://${API_HOST}/3/search/${type}?api_key=${API_KEY}&query=${title}`;
+};
+
+const getApiForPopular = (type, pageNumber) => {
+    const API_HOST = "api.themoviedb.org";
+    const API_KEY = getCookieValue(document.cookie);
+    return `https://${API_HOST}/3/${type}/top_rated?api_key=${API_KEY}&page=${pageNumber}`;
+};
+
+const highlightSearchBar = (searchQuery) => {
+    let search = document.querySelector(".fa-search");
+    searchQuery.parentElement.className += " error_input";
+    search.style.color = "#ff3f4b";
+};
+
+const removeErrors = () => {
+    let {parentElement} = document.querySelector(".search_query");
+    let search = document.querySelector(".fa-search");
+    parentElement.className = parentElement.className.replace(" error_input", "");
+    search.style.color = "antiquewhite";
+};
+
+const clearElementValue = element => element.value = "";
+
+const addListenerToSearch = () => {
+    let {addEventListener} = document.querySelector(".search_query");
+    addEventListener("change", removeErrors);
+};
 
 const loader = "<div class=\"lds-circle\"><div></div></div>";

@@ -1,11 +1,8 @@
 const {setGenres, setLanguage, setMovieDescription, setMovieTitle, setPoster, setRating, setReleaseDate} = movieSetters;
 
-const getApiUrl = pageNumber => {
-    const API_KEY = getCookieValue(document.cookie);
-    console.log(API_KEY);
-    const API_HOST = "api.themoviedb.org";
-    return `https://${API_HOST}/3/movie/top_rated?api_key=${API_KEY}&page=${pageNumber}`;
-};
+const getApiForPopularMovie = pageNumber => getApiForPopular("movie", pageNumber);
+
+const getApiForMovie = (movieName) => getAPiFor("movie", movieName);
 
 const assignValues = movieInfo => {
     const posterUrl = getPosterUrl(movieInfo["poster_path"]);
@@ -21,17 +18,31 @@ const assignValues = movieInfo => {
     setAdult(movieInfo.adult);
 };
 
+const getMovie = async () => {
+    let searchQuery = document.querySelector(".search_query");
+    let movieName = searchQuery.value;
+    let apiHostForMovie = getApiForMovie(movieName);
+    let response = await fetchResource(apiHostForMovie);
+    let movieInfo = refineMovieResults(response, movieName);
+    addListenerToSearch();
+    if (!movieInfo) return highlightSearchBar(searchQuery);
+    clearElementValue(searchQuery);
+    assignValues(movieInfo);
+};
+
 const addListenerToButtons = () => {
     let refreshButton = document.querySelector(".refresh");
     let gotoTvShow = document.querySelector(".tv_shows");
-    gotoTvShow.addEventListener("click", () => window.location.href = "/tvSeries.html")
+    let search = document.querySelector(".search_button");
     refreshButton.addEventListener("click", showRandomFilm);
+    gotoTvShow.addEventListener("click", () => window.location.href = "/tvSeries.html");
+    search.addEventListener("click", getMovie);
 };
 
 const showRandomFilm = async (e) => {
     let {main, actualModal} = getActualModal();
     main.innerHTML = loader;
-    let randomMovieInfo = await getRandomVideoInfo(getApiUrl(), defaultMovieInfo);
+    let randomMovieInfo = await getRandomVideoInfo(getApiForPopularMovie(), defaultMovieInfo);
     main.innerHTML = actualModal;
     assignValues(randomMovieInfo);
     addListenerToButtons();

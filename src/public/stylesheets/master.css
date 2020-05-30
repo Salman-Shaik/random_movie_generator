@@ -126,6 +126,7 @@ label {
     padding: 0.5%;
     align-self: center;
     border-radius: 6px;
+    opacity: 0.8;
 }
 
 .page_footer {

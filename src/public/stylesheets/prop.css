@@ -9,11 +9,11 @@ svg {
 }
 .lds-circle > div {
     display: inline-block;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     margin: 8px;
     border-radius: 50%;
-    background: antiquewhite;
+    background-image: linear-gradient(to right top, #c8f902, #ffd342, #ffb788, #ffb3be, #ddbbcf);
     animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 @keyframes lds-circle {

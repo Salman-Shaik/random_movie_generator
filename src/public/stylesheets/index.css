@@ -22,7 +22,7 @@
 }
 
 .second_grid {
-    width: 50%;
+    width: 70%;
     margin: 0.3% 2% 1%;
     text-align: left;
 
@@ -71,4 +71,20 @@
 .movie_genres {
     padding: 0.3%;
     font-weight: bolder;
+}
+
+.check:checked ~ .track {
+    box-shadow: inset 0 0 0 20px #7C5868;
+}
+
+.check:checked ~ .switch {
+    background-image: linear-gradient(to right, #e1f191, #e1f191, #c5f5a1, #a9f7b5, #90f8ca, #7cf7df);
+}
+
+.toggle {
+    background-color: #B5F6AB;
+}
+
+.switch {
+    background-image: linear-gradient(to right top, #323232, #624E5F, #A46776, #DF8876, #FFBA6A, #F9F871);
 }

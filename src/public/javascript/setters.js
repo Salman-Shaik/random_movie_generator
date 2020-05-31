@@ -1,8 +1,9 @@
 const MOVIE_PREFIX = "movie";
 const SHOW_PREFIX = "show";
+
 const SETTERS = {
     setTitle: (prefix, title) => setInnerText(`.${prefix}_title`, title),
-    setDescription: (prefix, description) => setInnerText(`.${prefix}_description`, description),
+    setDescription: (prefix, description) => setInnerHtml(`.${prefix}_description`, description),
     setReleaseDate: (prefix, releaseDate) => setInnerText(`.${prefix}_release_date`, releaseDate),
     setLanguage: (prefix, shortHand) => {
         let language = setInnerText(`.${prefix}_language`, shortHand.toUpperCase());

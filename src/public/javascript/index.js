@@ -1,6 +1,6 @@
 const {setGenres, setLanguage, setMovieDescription, setMovieTitle, setPoster, setRating, setReleaseDate} = movieSetters;
 
-const getApiForPopularMovie = pageNumber => getApiForPopular("movie", pageNumber);
+const getApiForPopularMovie = () => getApiForPopular("movie");
 
 const getApiForMovie = (movieName) => getAPiFor("movie", movieName);
 
@@ -9,7 +9,7 @@ const assignValues = movieInfo => {
     setGradient();
     setBackGroundImage(posterUrl);
     setMovieTitle(movieInfo.title);
-    setMovieDescription(movieInfo.overview);
+    setMovieDescription(refineDescription('movie', movieInfo));
     setReleaseDate(movieInfo["release_date"]);
     setRating(movieInfo["vote_average"], movieInfo["vote_count"]);
     setLanguage(movieInfo["original_language"]);
@@ -32,10 +32,10 @@ const getMovie = async () => {
 
 const addListenerToButtons = () => {
     let refreshButton = document.querySelector(".refresh");
-    let gotoTvShow = document.querySelector(".tv_shows");
+    let gotoTvShow = document.querySelector(".check");
     let search = document.querySelector(".search_button");
     refreshButton.addEventListener("click", showRandomFilm);
-    gotoTvShow.addEventListener("click", () => window.location.href = "/tvSeries.html");
+    gotoTvShow.addEventListener("click", () => setTimeout(() => window.location.href = "/tvSeries.html", 500));
     search.addEventListener("click", getMovie);
 };
 

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="stylesheets/tvSeries.css">
     <link rel="stylesheet" href="stylesheets/master.css">
     <link rel="stylesheet" href="stylesheets/prop.css">
+    <link rel="stylesheet" href="stylesheets/toggle.css">
     <script src="javascript/CommonScripts.js" rel="script"></script>
     <script src="javascript/Data.js" rel="script"></script>
     <script src="javascript/setters.js" rel="script"></script>
@@ -20,6 +21,11 @@
 <div class="second_background"></div>
 <main class="page_content">
     <div class="menu_bar">
+        <div class="toggle">
+            <input type="checkbox" class="check">
+            <b class="b switch"></b>
+            <b class="b track"></b>
+        </div>
         <div class="search_bar">
             <input class="search_query" type="text" placeholder="Search..."/>
             <button type="button" class="search_button transparent_background"><i class="fa fa-search"></i></button>
@@ -61,7 +67,6 @@
             <div class="adult hide"></div>
         </div>
     </div>
-    <button type="button" class="movies">Movie <i class="fa fa-film"></i></button>
 </main>
 </body>
 </html>

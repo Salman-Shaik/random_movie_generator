@@ -52,10 +52,10 @@ async function fetchResource(url) {
 }
 
 const getRandomSet = async (apiUrl) => {
-    let totalNumberOfPages = await getTotalPageNumber(apiUrl);
+    let totalNumberOfPages = await getTotalPageNumber(`${apiUrl}1`);
     let maxPageNumber = totalNumberOfPages / 2;
     let pageNumber = getRandomNumber(maxPageNumber);
-    let url = apiUrl.replace(undefined, pageNumber);
+    let url = `${apiUrl}${pageNumber}`
     return await fetchResource(url);
 };
 
@@ -70,6 +70,20 @@ const setInnerText = (selector, value) => {
     let element = document.querySelector(selector);
     element.innerText = value;
     return element;
+};
+
+const setInnerHtml = (selector, value) => {
+    let element = document.querySelector(selector);
+    element.innerHTML = value;
+    return element;
+};
+
+const refineDescription = (type, {overview, id, title}) => {
+    if (overview.length > 500) {
+        let shortDescription = overview.substr(0, 500);
+        return shortDescription + `.....<a href='https://www.themoviedb.org/${type}/${id}-${title}'>more</a>`
+    }
+    return overview;
 };
 
 const setBackGroundImage = posterUrl => {
@@ -100,10 +114,10 @@ const getAPiFor = (type, title) => {
     return `https://${API_HOST}/3/search/${type}?api_key=${API_KEY}&query=${title}`;
 };
 
-const getApiForPopular = (type, pageNumber) => {
+const getApiForPopular = (type) => {
     const API_HOST = "api.themoviedb.org";
     const API_KEY = getCookieValue(document.cookie);
-    return `https://${API_HOST}/3/${type}/top_rated?api_key=${API_KEY}&page=${pageNumber}`;
+    return `https://${API_HOST}/3/${type}/top_rated?api_key=${API_KEY}&page=`;
 };
 
 const highlightSearchBar = (searchQuery) => {

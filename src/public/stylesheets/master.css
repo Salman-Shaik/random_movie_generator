@@ -29,6 +29,7 @@ label {
     flex-direction: row;
     justify-content: space-between;
     align-self: center;
+    margin-top: 3%;
 }
 
 .search_bar {
@@ -65,7 +66,7 @@ label {
     margin: 3%;
     background-color: rgba(34, 34, 34, 0.51);
     border: 1px solid antiquewhite;
-    padding: 8px 10px;
+    padding: 8px 9px;
     border-radius: 50%;
 }
 
@@ -79,12 +80,12 @@ label {
     cursor: pointer;
 }
 
-.fa-refresh {
-    font-size: 30px;
+.fa-sync-alt {
+    font-size: 27px;
     color: antiquewhite;
 }
 
-.fa-refresh:hover {
+.fa-sync-alt:hover {
     color: #61ff00;
 }
 
@@ -92,17 +93,6 @@ label {
     align-self: center;
     font-size: 26px;
     color: antiquewhite;
-}
-
-.fa-film {
-    align-self: center;
-    font-size: 26px;
-    color: #212121;
-}
-
-.error_input {
-    border-color: #ff3f4b;
-    background-color: rgba(139, 71, 73, 0.51);
 }
 
 .transparent_background {
@@ -113,7 +103,7 @@ label {
 .page_content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     height: 80%;
     width: 100%;
 }
@@ -128,10 +118,6 @@ label {
     border-radius: 6px;
 }
 
-.page_footer {
-    justify-self: flex-end;
-}
-
 .third_grid {
     display: flex;
     align-items: flex-end;
@@ -143,19 +129,6 @@ label {
 .adult {
     color: antiquewhite;
     border: none;
-}
-
-.red {
-    background-color: red;
-}
-
-.green {
-    background-color: green;
-}
-
-.contact {
-    display: flex;
-    align-items: center;
 }
 
 .hide {
@@ -237,4 +210,51 @@ label {
 
 .title {
     -webkit-box-reflect: below -25px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(35%, transparent), to(#005));
+}
+
+.lds-circle {
+    top: 35%;
+}
+
+footer {
+    align-self: flex-end;
+    margin-right: 4.2%;
+    margin-bottom: 0.8%;
+}
+
+.contact, .donate {
+    display: flex;
+    flex-direction: row;
+}
+
+.fa-paypal, .fa-envelope, .fa-github-square, .fa-facebook-square, .fa-twitter-square {
+    font-size: 150%;
+    align-self: center;
+    margin: 6%;
+    cursor: pointer;
+}
+
+.fa-twitter-square {
+    color: dodgerblue;
+    text-shadow: 2px 2px skyblue;
+}
+
+.fa-facebook-square {
+    color: blue;
+    text-shadow: 2px 2px dodgerblue;
+}
+
+.fa-github-square {
+    color: black;
+    text-shadow: 2px 2px darkgrey;
+}
+
+.fa-envelope {
+    color: white;
+    text-shadow: 2px 2px palevioletred;
+}
+
+.fa-paypal {
+    color: darkblue;
+    text-shadow: 2px 2px deepskyblue;
 }

@@ -140,4 +140,27 @@ const addListenerToSearch = () => {
     addEventListener("change", removeErrors);
 };
 
+const openPage = url => window.open(url, '_blank');
+const goToTwitter = () => openPage("https://twitter.com/being_aries");
+const goToFacebook = () => openPage("https://www.facebook.com/salman.being.0/");
+const goToGithub = () => openPage("https://github.com/Salman-Shaik");
+const openMail = () => openPage("mailto:dukesalman5@gmail.com");
+const goToPaypal = () => openPage("https://paypal.me/thereallight?locale.x=en_GB");
+
+const addOnClickListener = (element, callback) => element.addEventListener('click', callback);
+
+const addEventListenerToCommonElements = () => {
+    let twitter = document.querySelector(".fa-twitter-square");
+    let facebook = document.querySelector(".fa-facebook-square");
+    let github = document.querySelector(".fa-github-square");
+    let envelope = document.querySelector(".fa-envelope");
+    let paypal = document.querySelector(".fa-paypal");
+
+    addOnClickListener(twitter, goToTwitter);
+    addOnClickListener(facebook, goToFacebook);
+    addOnClickListener(github, goToGithub);
+    addOnClickListener(envelope, openMail);
+    addOnClickListener(paypal, goToPaypal);
+}
+
 const loader = "<div class=\"lds-circle\"><div></div></div>";

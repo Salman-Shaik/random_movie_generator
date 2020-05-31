@@ -5,7 +5,7 @@
     justify-self: flex-start;
     font-size: 35px;
     color: #212121;
-    height: 25%;
+    height: 28%;
     background-image: linear-gradient(to right top, #323232, #624E5F, #A46776, #DF8876, #FFBA6A, #F9F871);
     border-bottom: #5E4B5B 1px solid;
     border-radius: 2px;
@@ -14,13 +14,13 @@
 .pearl {
     color: #212121;
     background-image: linear-gradient(to right top, #212121, #C1C1C1, #00A97F, #373544);
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 .squash {
     color: white;
     background-image: linear-gradient(to right top, #212121, #413425, #413425, #023D43, #023D43);
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 .second_grid {
@@ -35,12 +35,6 @@
 
 .movie_title {
     font-size: 30px;
-}
-
-.fa-tv {
-    align-self: center;
-    font-size: 26px;
-    color: red;
 }
 
 .second_background {

@@ -34,9 +34,10 @@ const addListenerToButtons = () => {
     let refreshButton = document.querySelector(".refresh");
     let gotoTvShow = document.querySelector(".check");
     let search = document.querySelector(".search_button");
-    refreshButton.addEventListener("click", showRandomFilm);
-    gotoTvShow.addEventListener("click", () => setTimeout(() => window.location.href = "/tvSeries.html", 500));
-    search.addEventListener("click", getMovie);
+    addOnClickListener(gotoTvShow,() => setTimeout(() => window.location.href = "/tvSeries.html", 500));
+    addOnClickListener(refreshButton,showRandomFilm);
+    addOnClickListener(search,getMovie);
+    addEventListenerToCommonElements();
 };
 
 const showRandomFilm = async (e) => {

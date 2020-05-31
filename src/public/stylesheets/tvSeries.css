@@ -5,7 +5,7 @@
     justify-self: flex-start;
     font-size: 35px;
     color: #212121;
-    height: 22%;
+    height: 25%;
     background-image: linear-gradient(to right, #e1f191, #e1f191, #c5f5a1, #a9f7b5, #90f8ca, #7cf7df);
     border-bottom: #95F6CF 1px solid;
     border-radius: 2px;
@@ -13,12 +13,14 @@
 
 .pearl {
     color: #212121;
-    background-image: linear-gradient(to right top, #9DF5CA, #9DF5CA, #C6BBFF, #C6BBFF, #F7BD6C, #F7BD6C);
+    background-image: linear-gradient(to right top, #212121, #C1C1C1, #00A97F, #373544);
+    opacity: 0.8;
 }
 
 .squash {
-    color: #212121;
-    background-image: linear-gradient(to right top, #E4F18F, #E4F18F, #FFC89E, #FFC89E, #F5916A, #F5916A);
+    color: white;
+    background-image: linear-gradient(to right top, #212121, #413425, #413425, #023D43, #023D43);
+    opacity: 0.8;
 }
 
 .second_grid {

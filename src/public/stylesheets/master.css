@@ -126,7 +126,6 @@ label {
     padding: 0.5%;
     align-self: center;
     border-radius: 6px;
-    opacity: 0.8;
 }
 
 .page_footer {
@@ -226,4 +225,16 @@ label {
 
 .movies:focus, .tv_shows:focus {
     outline: none;
+}
+
+.stamp {
+    width: 7%;
+    position: absolute;
+    left: 625px;
+    top: 55px;
+    transform: rotate(345deg);
+}
+
+.title {
+    -webkit-box-reflect: below -25px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(35%, transparent), to(#005));
 }

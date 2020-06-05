@@ -55,7 +55,7 @@ const getRandomSet = async (apiUrl) => {
     let totalNumberOfPages = await getTotalPageNumber(`${apiUrl}1`);
     let maxPageNumber = totalNumberOfPages / 2;
     let pageNumber = getRandomNumber(maxPageNumber);
-    let url = `${apiUrl}${pageNumber}`
+    let url = `${apiUrl}${pageNumber}`;
     return await fetchResource(url);
 };
 
@@ -161,6 +161,6 @@ const addEventListenerToCommonElements = () => {
     addOnClickListener(github, goToGithub);
     addOnClickListener(envelope, openMail);
     addOnClickListener(paypal, goToPaypal);
-}
+};
 
 const loader = "<div class=\"lds-circle\"><div></div></div>";

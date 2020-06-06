@@ -9,10 +9,10 @@ const SETTERS = {
         let language = setInnerText(`.${prefix}_language`, shortHand.toUpperCase());
         language.title = languages[shortHand];
     },
-    setRatingAndVotes: (prefix, average, votes) => {
+    setRatingAndVotes: (prefix, ratings, votes) => {
         let showRating = document.querySelector(".rating");
         let progress = document.querySelector(".progress");
-        let ratingPercent = +average * 10;
+        let ratingPercent = getCombinedPercentage(ratings);
 
         showRating.textContent = `${ratingPercent} %`;
         progress.setAttribute('stroke-dasharray', `${getValue(ratingPercent, 250.2)}, 250.2`);
@@ -31,7 +31,7 @@ const movieSetters = {
     setMovieDescription: overview => SETTERS.setDescription(MOVIE_PREFIX, overview),
     setReleaseDate: releaseDate => SETTERS.setReleaseDate(MOVIE_PREFIX, releaseDate),
     setLanguage: shortHand => SETTERS.setLanguage(MOVIE_PREFIX, shortHand),
-    setRating: (average, votes) => SETTERS.setRatingAndVotes(MOVIE_PREFIX, average, votes),
+    setRating: (ratings, votes) => SETTERS.setRatingAndVotes(MOVIE_PREFIX, ratings, votes),
     setPoster: posterUrl => SETTERS.setPoster(MOVIE_PREFIX, posterUrl),
     setGenres: genreIds => SETTERS.setGenres(MOVIE_PREFIX, genreIds, movieGenres)
 };

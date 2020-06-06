@@ -120,6 +120,9 @@ const getApiForPopular = (type) => {
     return `https://${API_HOST}/3/${type}/top_rated?api_key=${API_KEY}&page=`;
 };
 
+const getAPiForDetails = (title) => {
+    return `http://www.omdbapi.com/?t=${title}&plot=full&apikey=9ade1a52`
+};
 const highlightSearchBar = (searchQuery) => {
     let search = document.querySelector(".fa-search");
     searchQuery.parentElement.className += " error_input";
@@ -164,3 +167,29 @@ const addEventListenerToCommonElements = () => {
 };
 
 const loader = "<div class=\"lds-circle\"><div></div></div>";
+
+const getRatingObject = (ratings, source) => ratings.find(r => r["Source"] === source)["Value"];
+const getIMDbScore = ratings => getRatingObject(ratings, "Internet Movie Database");
+const getMetaScore = ratings => getRatingObject(ratings, "Metacritic");
+const getRottenTomatoesScore = ratings => getRatingObject(ratings, "Rotten Tomatoes");
+const isIMDbExists = ratings => !!getIMDbScore(ratings);
+const isMetaScoreExists = ratings => !!getMetaScore(ratings);
+const isRottenTomatoes = ratings => !!getRottenTomatoesScore(ratings);
+
+const getCombinedPercentage = ratings => {
+    let overallRating;
+    if (isIMDbExists(ratings)) {
+        let imDbValue = getIMDbScore(ratings);
+        overallRating = +imDbValue.replace("/10", "") * 10;
+    }
+    if (isMetaScoreExists(ratings)) {
+        let metaScoreValue = getMetaScore(ratings);
+        overallRating += +metaScoreValue.replace("/100", "");
+    }
+    if (isRottenTomatoes(ratings)) {
+        let rottenTomatoesValue = getRottenTomatoesScore(ratings);
+        overallRating += +rottenTomatoesValue.replace("%", "");
+    }
+    console.log(Math.round(overallRating / 3))
+    return Math.round(overallRating / 3);
+};

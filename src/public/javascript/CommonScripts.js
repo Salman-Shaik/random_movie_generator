@@ -121,7 +121,7 @@ const getApiForPopular = (type) => {
 };
 
 const getAPiForDetails = (title) => {
-    return `http://www.omdbapi.com/?t=${title}&plot=full&apikey=9ade1a52`
+    return `https://www.omdbapi.com/?t=${title}&plot=full&apikey=9ade1a52`
 };
 const highlightSearchBar = (searchQuery) => {
     let search = document.querySelector(".fa-search");

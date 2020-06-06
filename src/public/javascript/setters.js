@@ -32,7 +32,10 @@ const movieSetters = {
     setReleaseDate: releaseDate => SETTERS.setReleaseDate(MOVIE_PREFIX, releaseDate),
     setLanguage: shortHand => SETTERS.setLanguage(MOVIE_PREFIX, shortHand),
     setRating: (ratings, votes) => SETTERS.setRatingAndVotes(MOVIE_PREFIX, ratings, votes),
-    setPoster: posterUrl => SETTERS.setPoster(MOVIE_PREFIX, posterUrl),
+    setPoster: posterUrl => {
+        console.log(posterUrl)
+        return SETTERS.setPoster(MOVIE_PREFIX, posterUrl)
+    },
     setGenres: genreIds => SETTERS.setGenres(MOVIE_PREFIX, genreIds, movieGenres)
 };
 

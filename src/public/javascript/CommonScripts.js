@@ -123,6 +123,12 @@ const getApiForPopular = (type) => {
 const getAPiForDetails = (title) => {
     return `https://www.omdbapi.com/?t=${title}&plot=full&apikey=9ade1a52`
 };
+
+const fetchIMDbDetails = async (api) => await fetch(api)
+    .then(res => res.text())
+    .then(data => JSON.parse(data))
+    .catch(err => console.error(err.message));
+
 const highlightSearchBar = (searchQuery) => {
     let search = document.querySelector(".fa-search");
     searchQuery.parentElement.className += " error_input";

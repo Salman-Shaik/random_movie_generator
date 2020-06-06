@@ -4,14 +4,14 @@ const getApiForPopularTv = () => getApiForPopular("tv");
 
 const getApiForShow = (movieName) => getAPiFor("tv", movieName);
 
-const assignValues = showInfo => {
+const assignValues = (showInfo, details) => {
     const posterUrl = getPosterUrl(showInfo["poster_path"]);
     setGradient();
     setBackGroundImage(posterUrl);
     setShowTitle(showInfo.name);
     setShowDescription(refineDescription('tv', showInfo));
     setReleaseDate(showInfo["first_air_date"]);
-    setRating(showInfo["vote_average"], showInfo["vote_count"]);
+    setRating(details['Ratings'], details["imdbVotes"]);
     setLanguage(showInfo["original_language"]);
     setPoster(posterUrl);
     setGenres(showInfo["genre_ids"]);
@@ -27,25 +27,27 @@ const getShow = async () => {
     addListenerToSearch();
     if (!movieInfo) return highlightSearchBar(searchQuery);
     clearElementValue(searchQuery);
-    assignValues(movieInfo);
+    let details = await fetchIMDbDetails(fetchIMDbDetails(movieInfo.title));
+    assignValues(movieInfo, details);
 };
 
 const addListenerToButtons = () => {
     let refreshButton = document.querySelector(".refresh");
     let gotoMovies = document.querySelector(".check");
     let search = document.querySelector(".search_button");
-    addOnClickListener(gotoMovies,() => setTimeout(() => window.location.href = "/", 500));
-    addOnClickListener(refreshButton,showRandomShow);
-    addOnClickListener(search,getShow);
+    addOnClickListener(gotoMovies, () => setTimeout(() => window.location.href = "/", 500));
+    addOnClickListener(refreshButton, showRandomShow);
+    addOnClickListener(search, getShow);
     addEventListenerToCommonElements();
 };
 
 const showRandomShow = async (e) => {
     let {main, actualModal} = getActualModal();
     main.innerHTML = loader;
-    let randomMovieInfo = await getRandomVideoInfo(getApiForPopularTv(), defaultShowInfo);
+    let randomShowInfo = await getRandomVideoInfo(getApiForPopularTv(), defaultShowInfo);
+    let showDetails = await fetchIMDbDetails(getAPiForDetails(randomShowInfo.title));
     main.innerHTML = actualModal;
-    assignValues(randomMovieInfo);
+    assignValues(randomShowInfo, showDetails);
     addListenerToButtons();
 };
 

@@ -27,7 +27,7 @@ const getMovie = async () => {
     addListenerToSearch();
     if (!movieInfo) return highlightSearchBar(searchQuery);
     clearElementValue(searchQuery);
-    let details = await getMovieDetails(getAPiForDetails(movieInfo.title));
+    let details = await fetchIMDbDetails(getAPiForDetails(movieInfo.title));
     assignValues(movieInfo, details);
 };
 
@@ -41,16 +41,11 @@ const addListenerToButtons = () => {
     addEventListenerToCommonElements();
 };
 
-const getMovieDetails = async (api) => await fetch(api)
-    .then(res => res.text())
-    .then(data => JSON.parse(data))
-    .catch(err => console.error(err.message));
-
 const showRandomFilm = async (e) => {
     let {main, actualModal} = getActualModal();
     main.innerHTML = loader;
     let randomMovieInfo = await getRandomVideoInfo(getApiForPopularMovie(), defaultMovieInfo);
-    let details = await getMovieDetails(getAPiForDetails(randomMovieInfo.title));
+    let details = await fetchIMDbDetails(getAPiForDetails(randomMovieInfo.title));
     main.innerHTML = actualModal;
     assignValues(randomMovieInfo, details);
     addListenerToButtons();

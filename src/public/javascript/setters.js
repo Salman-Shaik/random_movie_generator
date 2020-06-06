@@ -16,7 +16,7 @@ const SETTERS = {
 
         showRating.textContent = `${ratingPercent} %`;
         progress.setAttribute('stroke-dasharray', `${getValue(ratingPercent, 250.2)}, 250.2`);
-        setInnerText(`.${prefix}_votes`, `${votes} Votes`)
+        setInnerText(`.${prefix}_votes`, !!votes || votes === 0 ? `${votes} Votes` : 'No Rating')
     },
     setPoster: (prefix, posterUrl) => document.querySelector(`.${prefix}_poster`).src = posterUrl,
     setGenres: (prefix, genreIds, genreData) => {

@@ -124,10 +124,12 @@ const getAPiForDetails = (title) => {
     return `https://www.omdbapi.com/?t=${title}&plot=full&apikey=9ade1a52`
 };
 
-const fetchIMDbDetails = async (api) => await fetch(api)
-    .then(res => res.text())
-    .then(data => JSON.parse(data))
-    .catch(err => console.error(err.message));
+const fetchIMDbDetails = async (api) => {
+    return await fetch(api)
+        .then(res => res.text())
+        .then(data => JSON.parse(data))
+        .catch(err => console.error(err));
+};
 
 const highlightSearchBar = (searchQuery) => {
     let search = document.querySelector(".fa-search");
@@ -174,28 +176,45 @@ const addEventListenerToCommonElements = () => {
 
 const loader = "<div class=\"lds-circle\"><div></div></div>";
 
-const getRatingObject = (ratings, source) => ratings.find(r => r["Source"] === source)["Value"];
-const getIMDbScore = ratings => getRatingObject(ratings, "Internet Movie Database");
-const getMetaScore = ratings => getRatingObject(ratings, "Metacritic");
-const getRottenTomatoesScore = ratings => getRatingObject(ratings, "Rotten Tomatoes");
-const isIMDbExists = ratings => !!getIMDbScore(ratings);
-const isMetaScoreExists = ratings => !!getMetaScore(ratings);
-const isRottenTomatoes = ratings => !!getRottenTomatoesScore(ratings);
+const getRatingObject = (ratings, source) => ratings.find(r => r["Source"] === source);
+const getIMDb = ratings => getRatingObject(ratings, "Internet Movie Database");
+const getMetaCritic = ratings => getRatingObject(ratings, "Metacritic");
+const getRottenTomatoes = ratings => getRatingObject(ratings, "Rotten Tomatoes");
+const isIMDbExists = ratings => {
+    try {
+        return !!getIMDb(ratings)["Value"];
+    } catch (e) {
+        return false;
+    }
+};
+const isMetaScoreExists = ratings => {
+    try {
+        return !!getMetaCritic(ratings)["Value"];
+    } catch (e) {
+        return false;
+    }
+};
+const isRottenTomatoes = ratings => {
+    try {
+        return !!getRottenTomatoes(ratings)["Value"];
+    } catch (e) {
+        return false;
+    }
+};
 
 const getCombinedPercentage = ratings => {
-    let overallRating;
+    let overallRating = 0;
     if (isIMDbExists(ratings)) {
-        let imDbValue = getIMDbScore(ratings);
+        let imDbValue = getIMDb(ratings)["Value"];
         overallRating = +imDbValue.replace("/10", "") * 10;
     }
     if (isMetaScoreExists(ratings)) {
-        let metaScoreValue = getMetaScore(ratings);
+        let metaScoreValue = getMetaCritic(ratings)["Value"];
         overallRating += +metaScoreValue.replace("/100", "");
     }
     if (isRottenTomatoes(ratings)) {
-        let rottenTomatoesValue = getRottenTomatoesScore(ratings);
+        let rottenTomatoesValue = getRottenTomatoes(ratings)["Value"];
         overallRating += +rottenTomatoesValue.replace("%", "");
     }
-    console.log(Math.round(overallRating / 3))
     return Math.round(overallRating / 3);
 };

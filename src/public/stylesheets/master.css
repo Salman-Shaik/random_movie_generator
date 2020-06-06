@@ -187,6 +187,10 @@ label {
     font-size: 16px;
 }
 
+label[for="show_release_date"], label[for="movie_release_date"] {
+    font-size: 18px;
+}
+
 .show_title, .show_description, .movie_title, .movie_description {
     margin: 0;
 }
@@ -196,6 +200,9 @@ label {
     cursor: pointer;
 }
 
+.show_votes, .movie_votes {
+    margin-left: 1%;
+}
 .movies:focus, .tv_shows:focus {
     outline: none;
 }

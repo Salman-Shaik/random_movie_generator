@@ -23,12 +23,12 @@ const getShow = async () => {
     let showName = searchQuery.value;
     let apiHostForShow = getApiForShow(showName);
     let response = await fetchResource(apiHostForShow);
-    let movieInfo = refineShowResults(response, showName);
+    let showInfo = refineShowResults(response, showName);
     addListenerToSearch();
-    if (!movieInfo) return highlightSearchBar(searchQuery);
+    if (!showInfo) return highlightSearchBar(searchQuery);
     clearElementValue(searchQuery);
-    let details = await fetchIMDbDetails(fetchIMDbDetails(movieInfo.title));
-    assignValues(movieInfo, details);
+    let details = await fetchIMDbDetails(getAPiForDetails(showInfo["original_name"]));
+    assignValues(showInfo, details);
 };
 
 const addListenerToButtons = () => {

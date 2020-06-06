@@ -45,7 +45,7 @@ const showRandomShow = async (e) => {
     let {main, actualModal} = getActualModal();
     main.innerHTML = loader;
     let randomShowInfo = await getRandomVideoInfo(getApiForPopularTv(), defaultShowInfo);
-    let showDetails = await fetchIMDbDetails(getAPiForDetails(randomShowInfo.title));
+    let showDetails = await fetchIMDbDetails(getAPiForDetails(randomShowInfo["original_name"]));
     main.innerHTML = actualModal;
     assignValues(randomShowInfo, showDetails);
     addListenerToButtons();

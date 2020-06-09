@@ -176,22 +176,22 @@ label {
     filter: blur(10px);
 }
 
-.adult, .movie_language, .show_language {
+.adult, .movie_language, .show_language, .language {
     border-radius: 6px;
     padding: 6px;
     background-color: black;
     color: white;
 }
 
-.movie_description, .movie_release_date, .show_description, .show_release_date, .adult {
+.movie_description, .movie_release_date, .show_description, .show_release_date,.description,.release_date, .adult {
     font-size: 16px;
 }
 
-label[for="show_release_date"], label[for="movie_release_date"] {
+label[for="show_release_date"], label[for="movie_release_date"] , label[for="release_date"]{
     font-size: 18px;
 }
 
-.show_title, .show_description, .movie_title, .movie_description {
+.show_title, .show_description, .movie_title, .movie_description, .title, .description {
     margin: 0;
 }
 
@@ -200,7 +200,7 @@ label[for="show_release_date"], label[for="movie_release_date"] {
     cursor: pointer;
 }
 
-.show_votes, .movie_votes {
+.show_votes, .movie_votes, .votes {
     margin-left: 1%;
 }
 .movies:focus, .tv_shows:focus {

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
           integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="stylesheets/index.css">
+    <link rel="stylesheet" href="stylesheets/show.css">
     <link rel="stylesheet" href="stylesheets/master.css">
     <link rel="stylesheet" href="stylesheets/prop.css">
     <link rel="stylesheet" href="stylesheets/toggle.css">
     <script src="javascript/CommonScripts.js" rel="script" defer></script>
     <script src="javascript/Data.js" rel="script" defer></script>
     <script src="javascript/setters.js" rel="script" defer></script>
-    <script src="javascript/index.js" rel="script" defer></script>
+    <script src="javascript/show.js" rel="script" defer></script>
     <script data-ad-client="ca-pub-6048242276500053" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <title>A.I.K.A.I</title>
@@ -19,32 +19,19 @@
 <body>
 <header class="page_title">
     <h2 class="title">A . I . K . A . I</h2>
-    <img src="resources/images/movies.png" alt="poster" class="stamp"/>
 </header>
 <div class="first_background"></div>
 <div class="second_background"></div>
 <main class="page_content">
-    <div class="menu_bar">
-        <div class="toggle">
-            <input type="checkbox" class="check">
-            <b class="b switch"></b>
-            <b class="b track"></b>
-        </div>
-        <div class="search_bar">
-            <input class="search_query" type="text" placeholder="Search..."/>
-            <button type="button" class="search_button transparent_background"><i class="fa fa-search"></i></button>
-        </div>
-        <button class="refresh"><i class="fas fa-sync-alt"></i></button>
-    </div>
     <div class="main_modal">
-        <img src="" alt="poster" class="movie_poster"/>
+        <img src="" alt="poster" class="poster"/>
         <div class="second_grid">
             <div>
-                <h2 class="movie_title">Title</h2>
-                <span class="movie_genres" id="movie_genres">genre</span>
-                <br/><br/>
+                <h2 class="show_title">Title</h2>
+                <span class="genres" id="genres">genre</span>
+                <br><br>
                 <div class="rating_box">
-                    <div class="movie_rating">
+                    <div class="show_rating">
                         <svg id="svg" viewbox="0 0 100 100">
                             <circle cx="50" cy="50" r="45" fill="#212121"/>
                             <path fill="none" stroke-linecap="round" stroke-width="5" stroke="#39ff14"
@@ -55,25 +42,25 @@
                             </text>
                         </svg>
                     </div>
-                    <span class="movie_votes">0 Votes</span>
+                    <span class="votes">0 Votes</span>
                 </div>
             </div>
             <br>
-            <p class="movie_description">description</p>
+            <p class="description">description</p>
             <br>
             <div class="force_bottom">
-                <label for="movie_release_date">Release Date:</label>
-                <span class="movie_release_date" id="movie_release_date">YYYY-MM-DD</span>
+                <label for="release_date">First episode date:</label>
+                <span class="release_date" id="release_date">YYYY-MM-DD</span>
             </div>
         </div>
         <div class="third_grid">
-            <span class="movie_language" title="language">Language</span>
+            <span class="language" title="language">Language</span>
             <div class="adult hide"></div>
         </div>
     </div>
 </main>
 <footer>
-    <div class="info">
+    <div>
         <div class="contact">
             <i class="fab fa-twitter-square"></i>
             <i class="fab fa-facebook-square"></i>

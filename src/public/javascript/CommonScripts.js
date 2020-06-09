@@ -78,10 +78,11 @@ const setInnerHtml = (selector, value) => {
     return element;
 };
 
-const refineDescription = (type, {overview, id, title}) => {
+const refineDescription = (type, {overview, title, name}) => {
     if (overview.length > 500) {
         let shortDescription = overview.substr(0, 500);
-        return shortDescription + `.....<a  target ='_blank' href='https://www.themoviedb.org/${type}/${id}-${title}'>more</a>`
+        let showTitle = title || name;
+        return shortDescription + `.....<a href='/show?title=${showTitle}&type=${type}'>more</a>`
     }
     return overview;
 };

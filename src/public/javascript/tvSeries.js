@@ -9,7 +9,7 @@ const assignValues = (showInfo, details) => {
     setGradient();
     setBackGroundImage(posterUrl);
     setShowTitle(showInfo.name);
-    setShowDescription(refineDescription('tv', showInfo));
+    setShowDescription(refineDescription('tv',showInfo));
     setReleaseDate(showInfo["first_air_date"]);
     setRating(details['Ratings'], details["imdbVotes"]);
     setLanguage(showInfo["original_language"]);

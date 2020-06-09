@@ -9,7 +9,7 @@ const assignValues = (movieInfo, details) => {
     setGradient();
     setBackGroundImage(posterUrl);
     setMovieTitle(movieInfo.title);
-    setMovieDescription(refineDescription('movie', movieInfo));
+    setMovieDescription(refineDescription(MOVIE_PREFIX,movieInfo));
     setReleaseDate(movieInfo["release_date"]);
     setRating(details["Ratings"], details["imdbVotes"]);
     setLanguage(movieInfo["original_language"]);
@@ -32,8 +32,8 @@ const getMovie = async () => {
 };
 
 const addListenerToButtons = () => {
-    let refreshButton = document.querySelector(".refresh");
     let gotoTvShow = document.querySelector(".check");
+    let refreshButton = document.querySelector(".refresh");
     let search = document.querySelector(".search_button");
     addOnClickListener(gotoTvShow, () => setTimeout(() => window.location.href = "/tvSeries.html", 500));
     addOnClickListener(refreshButton, showRandomFilm);

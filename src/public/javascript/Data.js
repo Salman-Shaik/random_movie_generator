@@ -34,7 +34,7 @@ const movieGenres = {
     10770: "TV Movie"
 };
 
-const showGenres = {
+const tvGenres = {
     16: "Animation",
     18: "Drama",
     35: "Comedy",

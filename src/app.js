@@ -8,6 +8,11 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+app.initialize = (show) => {
+    app.currentShow = show;
+    app.showType = 'movie';
+};
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -25,11 +30,7 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', indexRouter);
-
-app.use((req, res, next) => next(createError(404)));
-
 app.use((err, req, res, next) => {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -39,6 +40,18 @@ app.use((err, req, res, next) => {
     next();
 });
 
-app.use(express.static('public'));
+app.get('/show', (req, res) => {
+    res.app.currentShow = req.query.title;
+    res.app.showType = req.query.type;
+    res.redirect("/show.html");
+});
 
+app.get('/showDetails', (req, res) => {
+    let showDetails = {
+        title: req.app.currentShow,
+        type: req.app.showType
+    };
+    res.json(showDetails);
+});
+app.use((req, res, next) => next(createError(404)));
 module.exports = app;

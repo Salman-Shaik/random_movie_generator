@@ -1,0 +1,71 @@
+.page_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: flex-start;
+    font-size: 35px;
+    color: #212121;
+    height: 30%;
+    background-image: linear-gradient(to right, #e1f191, #e1f191, #c5f5a1, #a9f7b5, #90f8ca, #7cf7df);
+    border-bottom: #95F6CF 1px solid;
+    border-radius: 2px;
+}
+
+.pearl {
+    color: #212121;
+    background-image: linear-gradient(to right top, #212121, #C1C1C1, #00A97F, #373544);
+    opacity: 0.85;
+}
+
+.squash {
+    color: white;
+    background-image: linear-gradient(to right top, #212121, #413425, #413425, #023D43, #023D43);
+    opacity: 0.85;
+}
+
+.second_grid {
+    width: 70%;
+    margin: 0.3% 2% 1%;
+    text-align: left;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 50px;
+}
+
+.release_date {
+    align-self: flex-end;
+}
+
+.second_background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #D1F49B;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+.description {
+    max-height: 35%;
+    overflow: scroll;
+    text-overflow: ellipsis;
+}
+
+.genres {
+    padding: 0.2%;
+    font-weight: bolder;
+}
+
+.main_modal {
+    margin-top: 4%  !important;
+    width: 82%  !important;
+    height: 80%  !important;
+}
+
+.poster{
+    width: 25%;
+}

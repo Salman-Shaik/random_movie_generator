@@ -1,4 +1,4 @@
-const {setGenres, setLanguage, setDescription, setTitle, setPoster, setRatingAndVotes, setReleaseDate} = SETTERS;
+const {setGenres, setLanguage, setDescription, setTitle, setPoster, setRatingAndVotes, setReleaseDate, setCast} = SETTERS;
 
 const assignValues = (info, details, type) => {
     const posterUrl = getPosterUrl(info["poster_path"]);
@@ -12,6 +12,7 @@ const assignValues = (info, details, type) => {
     setPoster('', posterUrl);
     setGenres('', info["genre_ids"], getGenres(type));
     setAdult(info.adult);
+    setCast(details["Actors"]);
 };
 
 const getShow = async (title, type) => {

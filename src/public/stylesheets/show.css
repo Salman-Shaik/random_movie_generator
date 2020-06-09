@@ -55,7 +55,7 @@
     text-overflow: ellipsis;
 }
 
-.genres {
+.genres ,.cast {
     padding: 0.2%;
     font-weight: bolder;
 }

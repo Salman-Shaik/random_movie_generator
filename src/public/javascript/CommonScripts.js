@@ -79,12 +79,12 @@ const setInnerHtml = (selector, value) => {
 };
 
 const refineDescription = (type, {overview, title, name}) => {
+    let showTitle = title || name;
     if (overview.length > 500) {
         let shortDescription = overview.substr(0, 500);
-        let showTitle = title || name;
         return shortDescription + `.....<a href='/show?title=${showTitle}&type=${type}'>more</a>`
     }
-    return overview;
+    return overview + `   .....<a href='/show?title=${showTitle}&type=${type}'>more</a>`;
 };
 
 const setBackGroundImage = posterUrl => {

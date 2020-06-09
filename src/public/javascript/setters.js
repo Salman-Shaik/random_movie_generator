@@ -26,6 +26,9 @@ const SETTERS = {
         genreIds.forEach(id => genres.push(genreData[id]));
         setInnerText(`.${!!prefix ? `${prefix}_` : ``}genres`, genres.join(" , "));
     },
+    setCast: actors => {
+        setInnerText('.cast', actors);
+    }
 };
 
 const movieSetters = {

@@ -23,12 +23,6 @@ const setAdult = isAdult => {
     adult.innerText = "";
 };
 
-const getRandomGradient = () => {
-    const gradients = [" pearl", " squash", " pearl", " squash", " squash", " pearl"];
-    let index = getRandomNumber(gradients.length + 1) - 1;
-    return gradients[index];
-};
-
 const getTotalPageNumber = async (apiURL) => {
     let initResPromise = fetch(apiURL);
     return await initResPromise.then(result => result.text())
@@ -80,11 +74,12 @@ const setInnerHtml = (selector, value) => {
 
 const refineDescription = (type, {overview, title, name}) => {
     let showTitle = title || name;
+    console.log(showTitle)
     if (overview.length > 500) {
         let shortDescription = overview.substr(0, 500);
-        return shortDescription + `.....<a href='/show?title=${showTitle}&type=${type}'>more</a>`
+        return shortDescription + `.....<a href="/show?title=${showTitle}&type=${type}">more</a>`
     }
-    return overview + `   .....<a href='/show?title=${showTitle}&type=${type}'>more</a>`;
+    return overview + `   .....<a href="/show?title=${showTitle}&type=${type}">more</a>`;
 };
 
 const setBackGroundImage = posterUrl => {
@@ -94,7 +89,7 @@ const setBackGroundImage = posterUrl => {
 
 const setGradient = () => {
     let mainModal = document.querySelector(".main_modal");
-    mainModal.className += getRandomGradient();
+    mainModal.className += ' squash';
 };
 
 const refineMovieResults = (results, title) => {
@@ -195,7 +190,7 @@ const isMetaScoreExists = ratings => {
         return false;
     }
 };
-const isRottenTomatoes = ratings => {
+const isRottenTomatoesExists = ratings => {
     try {
         return !!getRottenTomatoes(ratings)["Value"];
     } catch (e) {
@@ -213,7 +208,7 @@ const getCombinedPercentage = ratings => {
         let metaScoreValue = getMetaCritic(ratings)["Value"];
         overallRating += +metaScoreValue.replace("/100", "");
     }
-    if (isRottenTomatoes(ratings)) {
+    if (isRottenTomatoesExists(ratings)) {
         let rottenTomatoesValue = getRottenTomatoes(ratings)["Value"];
         overallRating += +rottenTomatoesValue.replace("%", "");
     }

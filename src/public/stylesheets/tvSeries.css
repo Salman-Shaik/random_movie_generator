@@ -11,18 +11,6 @@
     border-radius: 2px;
 }
 
-.pearl {
-    color: #212121;
-    background-image: linear-gradient(to right top, #212121, #C1C1C1, #00A97F, #373544);
-    opacity: 0.85;
-}
-
-.squash {
-    color: white;
-    background-image: linear-gradient(to right top, #212121, #413425, #413425, #023D43, #023D43);
-    opacity: 0.85;
-}
-
 .second_grid {
     width: 70%;
     margin: 0.3% 2% 1%;

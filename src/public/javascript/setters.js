@@ -27,7 +27,25 @@ const SETTERS = {
         setInnerText(`.${!!prefix ? `${prefix}_` : ``}genres`, genres.join(" , "));
     },
     setCast: actors => {
-        setInnerText('.cast', actors);
+        console.log(actors)
+        setInnerText('.cast', actors)
+    },
+    setIndividualRatings: ratings => {
+        setInnerText('.imDbScore', 'N/A');
+        setInnerText('.metaScore', 'N/A');
+        setInnerText('.rottenTomatoesScore', 'N/A');
+        if (isIMDbExists(ratings)) {
+            const score = getIMDb(ratings)["Value"];
+            setInnerText('.imDbScore', score);
+        }
+        if (isMetaScoreExists(ratings)) {
+            const score = getMetaCritic(ratings)["Value"];
+            setInnerText('.metaScore', score);
+        }
+        if (isRottenTomatoesExists(ratings)) {
+            const score = getRottenTomatoes(ratings)["Value"];
+            setInnerText('.rottenTomatoesScore', score);
+        }
     }
 };
 

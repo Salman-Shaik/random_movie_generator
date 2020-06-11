@@ -1,4 +1,4 @@
-const {setGenres, setLanguage, setDescription, setTitle, setPoster, setRatingAndVotes, setReleaseDate, setCast} = SETTERS;
+const {setGenres, setLanguage, setDescription, setTitle, setPoster, setRatingAndVotes, setReleaseDate, setCast, setIndividualRatings} = SETTERS;
 
 const assignValues = (info, details, type) => {
     const posterUrl = getPosterUrl(info["poster_path"]);
@@ -13,9 +13,11 @@ const assignValues = (info, details, type) => {
     setGenres('', info["genre_ids"], getGenres(type));
     setAdult(info.adult);
     setCast(details["Actors"]);
+    setIndividualRatings(details['Ratings']);
 };
 
 const getShow = async (title, type) => {
+    console.log(type)
     let show = await fetchResource(getAPiFor(type, title));
     return show[0];
 };
@@ -31,6 +33,7 @@ const onload = async () => {
     let {main, actualModal} = getActualModal();
     main.innerHTML = loader;
     const {title, type} = await getTitleAndType();
+    if (title === "A.I.K.A.I") window.location.href = "/";
     const show = await getShow(title, type);
     const details = await fetchIMDbDetails(getAPiForDetails(title));
     main.innerHTML = actualModal;

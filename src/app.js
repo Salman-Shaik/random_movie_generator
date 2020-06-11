@@ -47,10 +47,9 @@ app.get('/show', (req, res) => {
 });
 
 app.get('/showDetails', (req, res) => {
-    let showDetails = {
-        title: req.app.currentShow,
-        type: req.app.showType
-    };
+    const currentShow = req.app.currentShow;
+    const type = req.app.showType;
+    let showDetails = {title: currentShow, type};
     res.json(showDetails);
 });
 app.use((req, res, next) => next(createError(404)));

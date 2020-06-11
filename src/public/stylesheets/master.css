@@ -24,6 +24,12 @@ label {
     font-weight: bold;
 }
 
+.squash {
+    color: white;
+    background-image: linear-gradient(to right top, #212121, #413425, #413425, #023D43, #023D43);
+    opacity: 0.85;
+}
+
 .menu_bar {
     display: flex;
     flex-direction: row;

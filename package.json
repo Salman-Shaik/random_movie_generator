@@ -16,7 +16,7 @@
     "pug": "^2.0.4"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "nodemon": "^2.0.4"
   }
 }
